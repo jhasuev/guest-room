@@ -1,18 +1,20 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
+  plugins: [vue()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      "@shared": fileURLToPath(new URL("./src/01_shared", import.meta.url)),
+      "@entities": fileURLToPath(new URL("./src/02_entities", import.meta.url)),
+      "@features": fileURLToPath(new URL("./src/03_features", import.meta.url)),
+      "@widgets": fileURLToPath(new URL("./src/04_widgets", import.meta.url)),
+      "@pages": fileURLToPath(new URL("./src/05_pages", import.meta.url)),
+      "@app": fileURLToPath(new URL("./src/07_app", import.meta.url)),
     },
   },
-})
+});
