@@ -1,7 +1,8 @@
 <script setup lang="ts">
-defineOptions({ name: "home" });
+defineOptions({ name: "Room" });
+import ChatForm from "@widgets/chat-form";
 </script>
 
 <template>
-  <div>home</div>
+  <chat-form />
 </template>
