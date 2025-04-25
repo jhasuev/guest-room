@@ -13,6 +13,16 @@ textarea {
   font-family: "Fira Code", Menlo, Courier;
 }
 
+.field {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
+  border: 1px solid transparent;
+  border-radius: 3px;
+
+  &.error {
+    border-color: red;
+  }
+}
+
 .btn {
   border-radius: 3px;
   background-color: var(--secondary-color);

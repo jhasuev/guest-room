@@ -1,15 +1,24 @@
 <template>
-  <form class="chat-form">
+  <form class="chat-form" @submit.prevent>
     <select-emodji v-model="emodji" class="chat-form__select-emodji" />
 
-    <enter-name v-model="name" class="chat-form__name-input" />
+    <enter-name
+      v-model="name"
+      @input="errors.name = false"
+      class="chat-form__name-input"
+      :error="errors.name"
+    />
 
     <textarea
+      v-model="msg"
       name="message"
-      class="chat-form__message-textarea"
-      :value="userStore.getUser.name"
+      class="chat-form__message-textarea field"
+      :class="{ error: errors.msg }"
+      @input="errors.msg = false"
     ></textarea>
-    <button class="chat-form__send-btn btn">🚀</button>
+    <button type="button" class="chat-form__send-btn btn" @click="onSubmit">
+      🚀
+    </button>
   </form>
 </template>
 
@@ -20,6 +29,11 @@ import EnterName from "@/02_entities/enter-name";
 import { useUserStore } from "@shared/stores/user";
 
 const userStore = useUserStore();
+const msg = ref("");
+const errors = ref({
+  name: false,
+  msg: false,
+});
 
 const emodji = computed({
   get: () => userStore.getUser.emodji,
@@ -30,6 +44,14 @@ const name = computed({
   get: () => userStore.getUser.name,
   set: (value) => userStore.setName(value),
 });
+
+const onSubmit = () => {
+  if (!msg.value.trim()) errors.value.msg = true;
+  if (!name.value.trim()) errors.value.name = true;
+
+  // we can send message...
+  console.log("sending...");
+};
 </script>
 
 <style lang="scss">
@@ -57,8 +79,6 @@ const name = computed({
     grid-area: name;
   }
   &__message-textarea {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
-    border-radius: 3px;
     resize: none;
     grid-area: message;
 

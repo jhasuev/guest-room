@@ -5,9 +5,11 @@
       type="text"
       :value="props.modelValue"
       @input="updateValue($event.target.value)"
-      class="enter-name__field"
+      class="enter-name__field field"
+      :class="{ error: props.error }"
       :disabled="!isEdit"
       :maxlength="maxLength"
+      @blur="onBlur"
     />
 
     <div class="enter-name__counter">
@@ -31,6 +33,10 @@ const props = defineProps({
   maxLength: {
     type: Number,
     default: 20,
+  },
+  error: {
+    type: Boolean,
+    default: false,
   },
 });
 const emit = defineEmits(["update:modelValue"]);
@@ -56,6 +62,12 @@ const onClickEdit = () => {
   isEdit.value = !isEdit.value;
   updateValue(filteredName);
 };
+
+const onBlur = () => {
+  if (props.modelValue.trim()) {
+    isEdit.value = false;
+  }
+};
 </script>
 
 <style lang="scss">
@@ -69,7 +81,7 @@ const onClickEdit = () => {
 
   &__field {
     flex-grow: 1;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
+
     height: 100%;
     padding: 0 15px;
 
