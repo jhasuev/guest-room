@@ -1,6 +1,7 @@
 <template>
   <form class="chat-form">
-    <div class="chat-form__select-emodji">😊</div>
+    <select-emodji class="chat-form__select-emodji" />
+
     <input type="text" class="chat-form__name-input" />
     <textarea name="message" class="chat-form__message-textarea"></textarea>
     <button class="chat-form__send-btn">➡️</button>
@@ -8,6 +9,7 @@
 </template>
 
 <script setup>
+import SelectEmodji from "@/02_entities/select-emodji";
 import { ref } from "vue";
 </script>
 
@@ -19,8 +21,8 @@ import { ref } from "vue";
   margin: auto;
 
   display: grid;
-  grid-template-columns: 30px 1fr 30px;
-  grid-template-rows: 30px 100px;
+  grid-template-columns: 50px 1fr 50px;
+  grid-template-rows: 50px 100px;
   grid-template-areas:
     "emodji name send"
     "message message send";
@@ -28,7 +30,7 @@ import { ref } from "vue";
   grid-row-gap: 5px;
 
   &__select-emodji {
-    border: 1px solid red;
+    // border: 1px solid red;
     grid-area: emodji;
   }
   &__name-input {
