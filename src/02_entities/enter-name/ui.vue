@@ -1,13 +1,18 @@
 <template>
   <div class="enter-name">
     <input
+      ref="inputRef"
       type="text"
       :value="props.modelValue"
       @input="updateValue($event.target.value)"
       class="enter-name__field"
       :disabled="!isEdit"
-      ref="inputRef"
+      :maxlength="maxLength"
     />
+
+    <div class="enter-name__counter">
+      {{ props.modelValue.length }}/{{ maxLength }}
+    </div>
 
     <button type="button" class="enter-name__btn btn" @click="onClickEdit">
       {{ !isEdit ? "✏️" : "✔️" }}
@@ -22,6 +27,10 @@ const props = defineProps({
   modelValue: {
     type: String,
     default: "",
+  },
+  maxLength: {
+    type: Number,
+    default: 20,
   },
 });
 const emit = defineEmits(["update:modelValue"]);
@@ -43,6 +52,7 @@ const updateValue = (name) => {
 const onClickEdit = () => {
   const filteredName = props.modelValue.trim();
   if (!filteredName) return;
+
   isEdit.value = !isEdit.value;
   updateValue(filteredName);
 };
@@ -70,6 +80,13 @@ const onClickEdit = () => {
 
       opacity: 0.25;
     }
+  }
+
+  &__counter {
+    position: absolute;
+    bottom: 2px;
+    right: 60px;
+    font-size: 10px;
   }
 
   &__btn {

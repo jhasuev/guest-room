@@ -38,6 +38,7 @@ const name = computed({
   padding: 10px;
   max-width: 500px;
   margin: auto;
+  border-radius: 3px;
 
   display: grid;
   grid-template-columns: 50px 1fr 50px;
@@ -56,9 +57,12 @@ const name = computed({
     grid-area: name;
   }
   &__message-textarea {
-    border: 1px solid red;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
+    border-radius: 3px;
     resize: none;
     grid-area: message;
+
+    padding: 15px;
   }
   &__send-btn {
     grid-area: send;

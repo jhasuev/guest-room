@@ -8,6 +8,11 @@ body {
   --primary-color: #2568ed;
 }
 
+input,
+textarea {
+  font-family: "Fira Code", Menlo, Courier;
+}
+
 .btn {
   border-radius: 3px;
   background-color: var(--secondary-color);
