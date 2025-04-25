@@ -2,19 +2,21 @@
   <form class="chat-form">
     <select-emodji v-model="emodji" class="chat-form__select-emodji" />
 
-    <input type="text" class="chat-form__name-input" />
+    <enter-name v-model="name" class="chat-form__name-input" />
+
     <textarea
       name="message"
       class="chat-form__message-textarea"
-      :value="userStore.getUser.emodji"
+      :value="userStore.getUser.name"
     ></textarea>
-    <button class="chat-form__send-btn">➡️</button>
+    <button class="chat-form__send-btn btn">🚀</button>
   </form>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import SelectEmodji from "@/02_entities/select-emodji";
+import EnterName from "@/02_entities/enter-name";
 import { useUserStore } from "@shared/stores/user";
 
 const userStore = useUserStore();
@@ -22,6 +24,11 @@ const userStore = useUserStore();
 const emodji = computed({
   get: () => userStore.getUser.emodji,
   set: (value) => userStore.setEmodji(value),
+});
+
+const name = computed({
+  get: () => userStore.getUser.name,
+  set: (value) => userStore.setName(value),
 });
 </script>
 
@@ -38,15 +45,14 @@ const emodji = computed({
   grid-template-areas:
     "emodji name send"
     "message message send";
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
+  --gap: 8px;
+  grid-column-gap: var(--gap);
+  grid-row-gap: var(--gap);
 
   &__select-emodji {
-    // border: 1px solid red;
     grid-area: emodji;
   }
   &__name-input {
-    border: 1px solid red;
     grid-area: name;
   }
   &__message-textarea {
@@ -55,8 +61,8 @@ const emodji = computed({
     grid-area: message;
   }
   &__send-btn {
-    border: 1px solid red;
     grid-area: send;
+    font-size: 22px;
   }
 }
 </style>

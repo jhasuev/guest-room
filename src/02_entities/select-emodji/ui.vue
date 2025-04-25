@@ -107,6 +107,7 @@ onBeforeUnmount(() => {
 
   &__list {
     position: absolute;
+    z-index: 9;
     top: -5px;
     left: 100%;
     transform: translateX(15px);

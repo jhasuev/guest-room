@@ -4,5 +4,17 @@ body {
 }
 
 :root {
+  --secondary-color: #548af6;
   --primary-color: #2568ed;
+}
+
+.btn {
+  border-radius: 3px;
+  background-color: var(--secondary-color);
+  transition: background-color 0.2s;
+  line-height: 1;
+
+  &:hover {
+    background-color: var(--primary-color);
+  }
 }

@@ -19,5 +19,8 @@ export const useUserStore = defineStore("user", {
     setEmodji(emodji: string) {
       this.user.emodji = emodji;
     },
+    setName(name: string) {
+      this.user.name = name;
+    },
   },
 });
