@@ -6,7 +6,7 @@ interface State {
   messages: IMessage[];
 }
 
-export const useAuthStore = defineStore("room", {
+export const useRoomStore = defineStore("room", {
   state: (): State => ({
     messages: [],
   }),

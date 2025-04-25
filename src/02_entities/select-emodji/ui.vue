@@ -19,7 +19,15 @@
 </template>
 
 <script setup>
-import { ref, onBeforeUnmount } from "vue";
+import { ref, onBeforeUnmount, watch } from "vue";
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: "👨‍🦱",
+  },
+});
+const emit = defineEmits(["update:modelValue"]);
+
 const emodjis = [
   "👩",
   "👨",
@@ -35,9 +43,16 @@ const emodjis = [
   "💀",
 ];
 
-const selected = ref("👨‍🦱");
+const selected = ref(props.modelValue);
 const isOpen = ref(false);
 const containerRef = ref(null);
+
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    selected.value = newVal;
+  }
+);
 
 const onClickOpen = () => {
   isOpen.value = !isOpen.value;
@@ -56,8 +71,12 @@ const onClickEverywhere = (e) => {
 };
 
 const onSelect = (emodji) => {
-  selected.value = emodji;
   isOpen.value = false;
+
+  if (selected.value === emodji) return;
+
+  selected.value = emodji;
+  emit("update:modelValue", emodji);
 };
 
 onBeforeUnmount(() => {
