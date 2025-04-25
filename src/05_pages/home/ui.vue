@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineOptions({ name: "Room" });
-import ChatForm from "@widgets/chat-form";
+import ChatForm from "@features/chat-form/";
 </script>
 
 <template>
