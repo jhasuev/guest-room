@@ -9,6 +9,7 @@ const roomStore = useRoomStore();
 
 onMounted(async () => {
   if (!roomStore.getMessages.length) {
+    // TODO add auto refresh + refresh by click with after 1 min
     const messages = await roomStore.loadMessages();
     console.log(messages);
   }

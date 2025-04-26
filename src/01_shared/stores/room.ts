@@ -30,6 +30,7 @@ export const useRoomStore = defineStore("room", {
 
     async send(messages: IMessage[]) {
       try {
+        // TODO load messages before send to resolve overwriting
         const result = await Room.send(messages);
         this.messages = result;
 
