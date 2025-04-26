@@ -24,11 +24,13 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import SelectEmodji from "@/02_entities/select-emodji";
-import EnterName from "@/02_entities/enter-name";
+import SelectEmodji from "@entities/select-emodji";
+import EnterName from "@entities/enter-name";
 import { useUserStore } from "@shared/stores/user";
+import { useRoomStore } from "@shared/stores/room";
 
 const userStore = useUserStore();
+const roomStore = useRoomStore();
 const msg = ref("");
 const errors = ref({
   name: false,
@@ -45,16 +47,34 @@ const name = computed({
   set: (value) => userStore.setName(value),
 });
 
-const onSubmit = () => {
+const onSubmit = async () => {
   if (!msg.value.trim()) errors.value.msg = true;
   if (!name.value.trim()) errors.value.name = true;
 
-  // we can send message...
-  console.log("sending...");
+  const errorsValues = new Set(Object.values(errors.value));
+  if (errorsValues.size === 1 && !errorsValues.has(true)) {
+    const now = new Date();
+    const utcString = now.toUTCString();
+
+    try {
+      roomStore.sendMessage({
+        id: crypto?.randomUUID() || `${Date.now()}.${Math.random()}`,
+        uid: userStore.getUser.id,
+        emodji: userStore.getUser.emodji,
+        name: userStore.getUser.name,
+        msg: msg.value,
+        dt: utcString,
+      });
+
+      msg.value = "";
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .chat-form {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
   padding: 10px;

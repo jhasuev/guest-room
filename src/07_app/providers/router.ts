@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { routes } from "@/05_pages";
+import { routes } from "@pages";
 
 export const router = createRouter({
   history: createWebHistory(),

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { IUser } from "@/01_shared/interfaces/IUser";
+import type { IUser } from "@shared/interfaces/IUser";
 
 interface State {
   user: IUser;
@@ -8,6 +8,7 @@ interface State {
 export const useUserStore = defineStore("user", {
   state: (): State => ({
     user: {
+      id: "asdasdasd-gfhvcnsd-3dwefsdh-bgfntyt4w",
       emodji: "👨‍🦱",
       name: "",
     },

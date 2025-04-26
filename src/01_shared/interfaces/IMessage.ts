@@ -1,5 +1,8 @@
 export interface IMessage {
+  id: string;
+  uid: string;
+  emodji: string;
   name: string;
   msg: string;
-  date: Date | number | string;
+  dt: string;
 }

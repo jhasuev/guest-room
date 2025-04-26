@@ -1,10 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-  // baseURL: process.env.VUE_APP_BASE_API,
-  baseURL: "http://localhost:3000/",
+  baseURL: "https://api.jsonbin.io/v3/b/680a7eee8561e97a5006c544",
   headers: {
     Accept: "application/json",
+    "X-Master-Key":
+      "$2a$10$9QfohfhkDfNZnGPkr4ZdAe1ZHDQf/QhYFPEHd9gdr/85uOxz/GXEW",
   },
 });
 
@@ -12,16 +13,13 @@ api.interceptors.response.use(
   ({ data }) => {
     console.log("data", data);
 
-    const response = data;
-    if (response.status === "success") return response.data;
-    throw response.data;
+    return data.record.messages;
   },
 
   (error) => {
-    if (error.response.status === 401) {
-      localStorage.removeItem("user");
-    }
-    return Promise.reject(error.response.data.data);
+    console.log("error", error);
+
+    return Promise.reject(error);
   }
 );
 
