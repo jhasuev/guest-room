@@ -10,7 +10,7 @@ export const useUserStore = defineStore("user", {
     user: {
       id: "asdasdasd-gfhvcnsd-3dwefsdh-bgfntyt4w",
       emodji: "👨‍🦱",
-      name: "",
+      name: localStorage.name || "",
     },
   }),
   getters: {
@@ -22,6 +22,7 @@ export const useUserStore = defineStore("user", {
     },
     setName(name: string) {
       this.user.name = name;
+      localStorage.name = name;
     },
   },
 });

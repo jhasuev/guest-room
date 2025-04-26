@@ -13,7 +13,7 @@ api.interceptors.response.use(
   ({ data }) => {
     console.log("data", data);
 
-    return data.record.messages;
+    return data.record;
   },
 
   (error) => {

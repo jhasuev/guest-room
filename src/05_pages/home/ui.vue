@@ -8,29 +8,22 @@ import { onMounted } from "vue";
 const roomStore = useRoomStore();
 
 onMounted(async () => {
-  // const messages = await roomStore.request();
-  // console.log(messages);
+  if (!roomStore.getMessages.length) {
+    const messages = await roomStore.loadMessages();
+    console.log(messages);
+  }
 });
-
-const onRemoveById = (id: string) => {
-  console.log(id);
-  roomStore.removeMessage(id);
-};
 </script>
 
 <template>
   <div>
     <chat-form />
-    <messages
-      class="messages"
-      :messages="roomStore.getMessages"
-      @removeById="onRemoveById($event)"
-    />
+    <messages class="messages" :messages="roomStore.getMessages" />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .messages {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 </style>

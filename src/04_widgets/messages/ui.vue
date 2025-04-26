@@ -1,24 +1,39 @@
 <template>
-  <div class="messages">
+  <transition-group name="fade" tag="div" class="messages">
     <message-item
-      v-for="(message, i) in props.messages"
+      v-for="message in props.messages"
       v-bind="message"
-      :key="i"
-      @remove="emit('removeById', $event)"
+      :key="message.id"
+      @remove="onRemoveById($event)"
     />
-  </div>
+  </transition-group>
 </template>
 
 <script setup lang="ts">
 import MessageItem from "@features/message-item";
 import type { IMessage } from "@shared/interfaces/IMessage";
-import { defineEmits } from "vue";
+import { useRoomStore } from "@shared/stores/room";
+import { ref, nextTick } from "vue";
 
-const emit = defineEmits(["removeById"]);
+const roomStore = useRoomStore();
+const isLoading = ref(false);
 
 const props = defineProps<{
   messages: IMessage[];
 }>();
+
+const onRemoveById = async (id: string) => {
+  if (isLoading.value) return;
+
+  try {
+    isLoading.value = true;
+    await nextTick();
+    await roomStore.removeMessage(id);
+  } catch (error) {
+  } finally {
+    isLoading.value = false;
+  }
+};
 </script>
 
 <style lang="scss">
@@ -27,5 +42,16 @@ const props = defineProps<{
   flex-direction: column;
   align-items: center;
   gap: 15px;
+  width: 100%;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0);
 }
 </style>

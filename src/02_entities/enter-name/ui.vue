@@ -9,7 +9,6 @@
       :class="{ error: props.error }"
       :disabled="!isEdit"
       :maxlength="maxLength"
-      @blur="onBlur"
     />
 
     <div class="enter-name__counter">
@@ -22,22 +21,18 @@
   </div>
 </template>
 
-<script setup>
-import { onMounted, ref, watch, nextTick } from "vue";
+<script setup lang="ts">
+import { onMounted, ref, watch, nextTick, withDefaults } from "vue";
 
-const props = defineProps({
-  modelValue: {
-    type: String,
-    default: "",
-  },
-  maxLength: {
-    type: Number,
-    default: 20,
-  },
-  error: {
-    type: Boolean,
-    default: false,
-  },
+interface IProps {
+  modelValue: string;
+  maxLength?: number;
+  error?: boolean;
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  maxLength: 20,
+  error: false,
 });
 const emit = defineEmits(["update:modelValue"]);
 const isEdit = ref(false);
@@ -51,7 +46,7 @@ watch(isEdit, (val) => {
   if (val) nextTick(() => inputRef.value?.focus());
 });
 
-const updateValue = (name) => {
+const updateValue = (name: string) => {
   emit("update:modelValue", name);
 };
 
@@ -61,12 +56,6 @@ const onClickEdit = () => {
 
   isEdit.value = !isEdit.value;
   updateValue(filteredName);
-};
-
-const onBlur = () => {
-  if (props.modelValue.trim()) {
-    isEdit.value = false;
-  }
 };
 </script>
 

@@ -85,6 +85,7 @@ const isMe = computed(() => userStore.getUser.id === props.uid);
   &__message {
     grid-area: message;
     padding: 15px 5px 5px;
+    white-space: pre-line;
   }
   &__date {
     text-align: right;
