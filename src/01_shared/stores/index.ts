@@ -1,3 +1,4 @@
-import { useAuthStore } from "./room";
+import { useRoomStore } from "./room";
+import { useUserStore } from "./user";
 
-export { useAuthStore };
+export { useRoomStore, useUserStore };

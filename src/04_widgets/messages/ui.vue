@@ -49,7 +49,7 @@
 
 <script setup lang="ts">
 import MessageItem from "@features/message-item";
-import { useRoomStore } from "@shared/stores/room";
+import { useRoomStore } from "@store";
 import { ref, nextTick, onMounted, onBeforeUnmount } from "vue";
 
 const DEFAULT_REFRESH_SECONDS = 5;

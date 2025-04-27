@@ -36,6 +36,14 @@ a {
   }
 }
 
+b {
+  font-weight: bold;
+}
+
+button {
+  cursor: pointer;
+}
+
 .field {
   border: 1px solid transparent;
   @include default-shadow;
@@ -62,10 +70,6 @@ a {
 .disabled {
   pointer-events: none;
   filter: grayscale(1);
-}
-
-b {
-  font-weight: bold;
 }
 
 .divider {

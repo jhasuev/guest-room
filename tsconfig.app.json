@@ -12,7 +12,8 @@
       "@features/*": ["./src/03_features/*"],
       "@widgets/*": ["./src/04_widgets/*"],
       "@pages/*": ["./src/05_pages/*"],
-      "@app/*": ["./src/07_app/*"]
+      "@app/*": ["./src/07_app/*"],
+      "@store": ["./src/01_shared/stores/"]
     }
   }
 }

@@ -33,7 +33,7 @@
 <script setup lang="ts">
 import { formatMessageTime } from "@shared/utils/time";
 import type { IMessage } from "@shared/interfaces/IMessage";
-import { useUserStore } from "@shared/stores/user";
+import { useUserStore } from "@store";
 import { computed, defineEmits } from "vue";
 
 const userStore = useUserStore();

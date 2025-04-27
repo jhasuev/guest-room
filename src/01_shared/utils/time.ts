@@ -2,7 +2,6 @@ export const formatMessageTime = (dateString: string) => {
   const inputDate = new Date(dateString);
   const now = new Date();
 
-  // FIXME
   const inputDateOnly: any = new Date(
     inputDate.getFullYear(),
     inputDate.getMonth(),

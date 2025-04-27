@@ -22,6 +22,9 @@ export default defineConfig({
       "@widgets": fileURLToPath(new URL("./src/04_widgets", import.meta.url)),
       "@pages": fileURLToPath(new URL("./src/05_pages", import.meta.url)),
       "@app": fileURLToPath(new URL("./src/07_app", import.meta.url)),
+      "@store": fileURLToPath(
+        new URL("./src/01_shared/stores/", import.meta.url)
+      ),
     },
   },
 });

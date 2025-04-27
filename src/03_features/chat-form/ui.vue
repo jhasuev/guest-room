@@ -30,8 +30,8 @@
 import { ref, computed } from "vue";
 import SelectEmodji from "@entities/select-emodji";
 import EnterName from "@entities/enter-name";
-import { useUserStore } from "@shared/stores/user";
-import { useRoomStore } from "@shared/stores/room";
+import { useUserStore } from "@store";
+import { useRoomStore } from "@store";
 import { getRandomgUserId } from "@shared/utils/hash";
 
 const userStore = useUserStore();
