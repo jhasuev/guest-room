@@ -11,6 +11,7 @@
       @input="errors.name = false"
       class="chat-form__name-input"
       :error="errors.name"
+      :maxLength="MAX_NAME_LENGTH"
     />
 
     <div class="chat-form__message">
@@ -20,13 +21,13 @@
         class="field"
         :class="{ error: errors.msg }"
         @input="errors.msg = false"
-        :maxLength="MAX_LEN"
+        :maxLength="MAX_MESSAGE_LENGTH"
       ></textarea>
 
       <text-counter
         class="chat-form__message-counter"
         :count="msg.length"
-        :max="MAX_LEN"
+        :max="MAX_MESSAGE_LENGTH"
       />
     </div>
 
@@ -44,9 +45,8 @@ import { useUserStore } from "@store";
 import { useRoomStore } from "@store";
 import { getRandomgHashId } from "@shared/utils/hash";
 import TextCounter from "@shared/ui/text-counter";
+import { MAX_MESSAGE_LENGTH, MAX_NAME_LENGTH } from "@shared/config/consts";
 
-// TODO вывести константы в отдельный файл
-const MAX_LEN = 255;
 const userStore = useUserStore();
 const roomStore = useRoomStore();
 const msg = ref("");

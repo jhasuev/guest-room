@@ -12,7 +12,9 @@
         'message-item__name--author': isMe,
       }"
     >
-      {{ props.name }}
+      <div>
+        {{ props.name }}
+      </div>
     </div>
 
     <div class="message-item__message">
@@ -78,6 +80,14 @@ const isAdmin = computed(() => !!localStorage.isAdmin);
     align-items: center;
     font-size: 1.125rem;
     padding-left: 10px;
+    overflow: hidden;
+
+    div {
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     &--author {
       font-weight: bold;

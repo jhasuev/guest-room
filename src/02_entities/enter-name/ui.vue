@@ -8,13 +8,14 @@
       class="enter-name__field field"
       :class="{ error: props.error }"
       :disabled="!isEdit"
-      :maxlength="maxLength"
+      :maxlength="props.maxLength"
     />
 
     <text-counter
+      v-if="props.maxLength"
       class="enter-name__counter"
       :count="props.modelValue.length"
-      :max="maxLength"
+      :max="props.maxLength"
     />
 
     <button type="button" class="enter-name__btn btn" @click="onClickEdit">
@@ -34,7 +35,6 @@ interface IProps {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  maxLength: 20,
   error: false,
 });
 const emit = defineEmits(["update:modelValue"]);
