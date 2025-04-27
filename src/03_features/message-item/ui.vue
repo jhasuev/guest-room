@@ -85,6 +85,7 @@ const isMe = computed(() => userStore.getUser.id === props.uid);
     grid-area: message;
     padding: 15px 5px 5px;
     white-space: pre-line;
+    word-break: break-word;
   }
   &__date {
     margin-top: 10px;

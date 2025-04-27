@@ -30,7 +30,6 @@ export const useRoomStore = defineStore("room", {
 
     async send(messages: IMessage[]) {
       try {
-        // TODO load messages before send to resolve overwriting
         const result = await Room.send(messages);
         this.messages = result;
 
@@ -41,13 +40,17 @@ export const useRoomStore = defineStore("room", {
     },
 
     async sendMessage(message: IMessage) {
-      const messages = [...this.messages];
+      const remoteMessages = await Room.load();
+
+      const messages = [...remoteMessages];
       messages.unshift(message);
       this.send(messages);
     },
 
     async removeMessage(id: string) {
-      const messages = [...this.messages].filter((msg) => msg.id != id);
+      const remoteMessages = await Room.load();
+
+      const messages = [...remoteMessages].filter((msg) => msg.id != id);
       return await this.send(messages);
     },
   },
