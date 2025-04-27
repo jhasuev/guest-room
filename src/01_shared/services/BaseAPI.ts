@@ -13,12 +13,23 @@ api.interceptors.response.use(
   ({ data }) => {
     console.log("data", data);
 
-    return data.record;
+    return data.record.messages;
   },
 
   (error) => {
     console.log("error", error);
 
+    return Promise.reject(error);
+  }
+);
+
+api.interceptors.request.use(
+  (config) => {
+    config.data = { messages: config.data };
+
+    return config;
+  },
+  (error) => {
     return Promise.reject(error);
   }
 );

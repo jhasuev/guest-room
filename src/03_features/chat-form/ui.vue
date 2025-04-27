@@ -1,5 +1,9 @@
 <template>
-  <form class="chat-form" @submit.prevent>
+  <form
+    class="chat-form"
+    :class="{ disabled: roomStore.getState === 'sending' }"
+    @submit.prevent
+  >
     <select-emodji v-model="emodji" class="chat-form__select-emodji" />
 
     <enter-name
@@ -77,10 +81,9 @@ const onSubmit = async () => {
 
 <style lang="scss" scoped>
 .chat-form {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
+  @include default-shadow;
   padding: 10px;
   margin: auto;
-  border-radius: 3px;
 
   display: grid;
   grid-template-columns: 50px 1fr 50px;

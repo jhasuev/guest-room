@@ -47,10 +47,9 @@ const isMe = computed(() => userStore.getUser.id === props.uid);
 .message-item {
   position: relative;
 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
+  @include default-shadow;
   padding: 10px;
   width: 100%;
-  border-radius: 3px;
 
   display: grid;
   grid-template-columns: 50px 1fr;
@@ -61,8 +60,8 @@ const isMe = computed(() => userStore.getUser.id === props.uid);
 
   &__emodji {
     grid-area: emodji;
+    @include default-shadow;
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
     display: flex;
     align-items: center;
     justify-content: center;

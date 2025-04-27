@@ -49,8 +49,7 @@
     width: 100%;
     background: #fff;
     padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    @include default-shadow;
 
     h2 {
       font-size: 1.5rem;

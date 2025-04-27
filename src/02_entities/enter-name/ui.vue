@@ -59,7 +59,7 @@ const onClickEdit = () => {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .enter-name {
   position: relative;
   width: 100%;

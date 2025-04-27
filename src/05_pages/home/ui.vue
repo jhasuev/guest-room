@@ -2,25 +2,13 @@
 defineOptions({ name: "Room" });
 import ChatForm from "@features/chat-form/";
 import Messages from "@widgets/messages";
-import { useRoomStore } from "@shared/stores/room";
-import { onMounted } from "vue";
-
-const roomStore = useRoomStore();
-
-onMounted(async () => {
-  if (!roomStore.getMessages.length) {
-    // TODO add auto refresh + refresh by click with after 1 min
-    const messages = await roomStore.loadMessages();
-    console.log(messages);
-  }
-});
 </script>
 
 <template>
   <div>
     <chat-form />
     <hr class="divider" />
-    <messages class="messages" :messages="roomStore.getMessages" />
+    <messages class="messages" />
   </div>
 </template>
 

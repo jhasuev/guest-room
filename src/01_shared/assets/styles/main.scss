@@ -37,9 +37,8 @@ a {
 }
 
 .field {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
   border: 1px solid transparent;
-  border-radius: 3px;
+  @include default-shadow;
 
   &.error {
     border-color: red;
@@ -51,10 +50,22 @@ a {
   background-color: var(--action-secondary-color);
   transition: background-color 0.2s;
   line-height: 1;
+  color: #fff;
+  padding: 0.5rem;
 
   &:hover {
     background-color: var(--action-color);
   }
+}
+
+.btn:disabled,
+.disabled {
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+b {
+  font-weight: bold;
 }
 
 .divider {
