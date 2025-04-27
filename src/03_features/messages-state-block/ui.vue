@@ -19,8 +19,8 @@
 
 <script setup lang="ts">
 import { ref, onBeforeUnmount, defineEmits, onMounted } from "vue";
+import { DEFAULT_REFRESH_SECONDS } from "@shared/config/consts";
 
-const DEFAULT_REFRESH_SECONDS = 5;
 const refreshTime = ref(DEFAULT_REFRESH_SECONDS);
 const timer: any = ref(null);
 const emit = defineEmits(["refresh"]);
