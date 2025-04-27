@@ -28,6 +28,7 @@ import SelectEmodji from "@entities/select-emodji";
 import EnterName from "@entities/enter-name";
 import { useUserStore } from "@shared/stores/user";
 import { useRoomStore } from "@shared/stores/room";
+import { getRandomgUserId } from "@shared/utils/hash";
 
 const userStore = useUserStore();
 const roomStore = useRoomStore();
@@ -58,7 +59,7 @@ const onSubmit = async () => {
 
     try {
       roomStore.sendMessage({
-        id: crypto?.randomUUID() || `${Date.now()}.${Math.random()}`,
+        id: getRandomgUserId(),
         uid: userStore.getUser.id,
         emodji: userStore.getUser.emodji,
         name: userStore.getUser.name,

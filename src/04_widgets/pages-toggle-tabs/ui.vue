@@ -42,7 +42,11 @@ const tabs = ref([
     text-decoration: none;
     font-size: 1.25rem;
     opacity: 0.6;
-    color: #333;
+    color: var(--primary-color);
+
+    &:hover {
+      text-decoration: none;
+    }
 
     &--active {
       opacity: 1;
