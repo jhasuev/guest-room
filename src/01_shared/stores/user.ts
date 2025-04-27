@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import type { IUser } from "@shared/interfaces/IUser";
-import { getRandomgUserId } from "@shared/utils/hash";
+import { getRandomgHashId } from "@shared/utils/hash";
 
 interface State {
   user: IUser;
@@ -8,7 +8,7 @@ interface State {
 
 let uid = localStorage.uid;
 if (!uid) {
-  uid = localStorage.uid = getRandomgUserId();
+  uid = localStorage.uid = getRandomgHashId();
 }
 
 export const useUserStore = defineStore("user", {

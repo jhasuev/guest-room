@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref, onBeforeUnmount, watch } from "vue";
-import EmodjiItem from "@/01_shared/ui/emodji-item";
+import EmodjiItem from "@shared/ui/emodji-item";
 const props = defineProps({
   modelValue: {
     type: String,
@@ -86,11 +86,11 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .select-emodji {
   position: relative;
 
-  & > &__selected {
+  &__selected {
     height: 50px;
     width: 50px;
   }

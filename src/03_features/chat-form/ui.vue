@@ -13,13 +13,23 @@
       :error="errors.name"
     />
 
-    <textarea
-      v-model="msg"
-      name="message"
-      class="chat-form__message-textarea field"
-      :class="{ error: errors.msg }"
-      @input="errors.msg = false"
-    ></textarea>
+    <div class="chat-form__message">
+      <textarea
+        v-model="msg"
+        name="message"
+        class="field"
+        :class="{ error: errors.msg }"
+        @input="errors.msg = false"
+        :maxLength="MAX_LEN"
+      ></textarea>
+
+      <text-counter
+        class="chat-form__message-counter"
+        :count="msg.length"
+        :max="MAX_LEN"
+      />
+    </div>
+
     <button type="button" class="chat-form__send-btn btn" @click="onSubmit">
       🚀
     </button>
@@ -32,8 +42,11 @@ import SelectEmodji from "@entities/select-emodji";
 import EnterName from "@entities/enter-name";
 import { useUserStore } from "@store";
 import { useRoomStore } from "@store";
-import { getRandomgUserId } from "@shared/utils/hash";
+import { getRandomgHashId } from "@shared/utils/hash";
+import TextCounter from "@shared/ui/text-counter";
 
+// TODO вывести константы в отдельный файл
+const MAX_LEN = 255;
 const userStore = useUserStore();
 const roomStore = useRoomStore();
 const msg = ref("");
@@ -58,17 +71,14 @@ const onSubmit = async () => {
 
   const errorsValues = new Set(Object.values(errors.value));
   if (errorsValues.size === 1 && !errorsValues.has(true)) {
-    const now = new Date();
-    const utcString = now.toUTCString();
-
     try {
       roomStore.sendMessage({
-        id: getRandomgUserId(),
+        id: getRandomgHashId(),
         uid: userStore.getUser.id,
         emodji: userStore.getUser.emodji,
         name: userStore.getUser.name,
         msg: msg.value,
-        dt: utcString,
+        dt: new Date().toUTCString(),
       });
 
       msg.value = "";
@@ -101,13 +111,18 @@ const onSubmit = async () => {
   &__name-input {
     grid-area: name;
   }
-  &__message-textarea {
-    width: 100%;
-    resize: none;
+  &__message {
     grid-area: message;
+    position: relative;
 
-    padding: 15px;
-    font-size: 1rem;
+    & > &-counter {
+      z-index: 111;
+      opacity: 1;
+      right: 15px;
+      bottom: 2px;
+      background-color: #fff;
+      padding: 2px 4px;
+    }
   }
   &__send-btn {
     grid-area: send;

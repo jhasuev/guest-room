@@ -11,9 +11,11 @@
       :maxlength="maxLength"
     />
 
-    <div class="enter-name__counter">
-      {{ props.modelValue.length }}/{{ maxLength }}
-    </div>
+    <text-counter
+      class="enter-name__counter"
+      :count="props.modelValue.length"
+      :max="maxLength"
+    />
 
     <button type="button" class="enter-name__btn btn" @click="onClickEdit">
       {{ !isEdit ? "✏️" : "✔️" }}
@@ -23,6 +25,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watch, nextTick, withDefaults } from "vue";
+import TextCounter from "@shared/ui/text-counter";
 
 interface IProps {
   modelValue: string;
@@ -70,12 +73,7 @@ const onClickEdit = () => {
 
   &__field {
     flex-grow: 1;
-
-    width: 100%;
-    height: 100%;
     padding: 0 15px;
-
-    font-size: 1rem;
 
     border-radius: 3px 0px 0px 3px;
 
@@ -87,10 +85,8 @@ const onClickEdit = () => {
   }
 
   &__counter {
-    position: absolute;
     bottom: 2px;
     right: 60px;
-    font-size: 0.65rem;
   }
 
   &__btn {
