@@ -34,18 +34,19 @@ const tabs = ref([
   display: flex;
   justify-content: center;
   gap: var(--gap);
-  padding: 5px 0 15px;
+  padding: 25px 0 15px;
 
   &__item {
     position: relative;
 
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1.25rem;
     opacity: 0.6;
+    color: #333;
 
     &--active {
       opacity: 1;
-      color: var(--primary-color);
+      color: var(--action-color);
     }
 
     &:after {
@@ -56,7 +57,7 @@ const tabs = ref([
       left: 100%;
       top: 0;
       bottom: 0;
-      border: var(--dot-radius) solid var(--primary-color);
+      border: var(--dot-radius) solid var(--action-color);
       width: 0;
       height: 0;
       pointer-events: none;

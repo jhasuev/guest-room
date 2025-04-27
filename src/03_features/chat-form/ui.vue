@@ -78,7 +78,6 @@ const onSubmit = async () => {
 .chat-form {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
   padding: 10px;
-  max-width: 500px;
   margin: auto;
   border-radius: 3px;
 
@@ -99,14 +98,16 @@ const onSubmit = async () => {
     grid-area: name;
   }
   &__message-textarea {
+    width: 100%;
     resize: none;
     grid-area: message;
 
     padding: 15px;
+    font-size: 1rem;
   }
   &__send-btn {
     grid-area: send;
-    font-size: 22px;
+    font-size: 1.45rem;
   }
 }
 </style>

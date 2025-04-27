@@ -100,7 +100,7 @@ onBeforeUnmount(() => {
     justify-content: center;
 
     height: inherit;
-    font-size: 30px;
+    font-size: 1.75rem;
 
     cursor: pointer;
   }
@@ -145,7 +145,7 @@ onBeforeUnmount(() => {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
+      font-size: 1.75rem;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.125);
       border: 1px solid transparent;
 
@@ -160,9 +160,9 @@ onBeforeUnmount(() => {
       }
 
       &--selected {
-        box-shadow: inset 0 0 15px var(--primary-color);
+        box-shadow: inset 0 0 15px var(--action-color);
         border-radius: 4px;
-        font-size: 30px;
+        font-size: 1.5rem;
       }
       &--selected:hover {
         transform: scale(1);

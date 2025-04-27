@@ -1,16 +1,39 @@
-body {
-  font-family: "Fira Code", Menlo, Courier;
-  min-height: 100vh;
+html {
+  font-size: 17px;
 }
 
+@media screen and (max-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 15px;
+  }
+}
 :root {
-  --secondary-color: #548af6;
-  --primary-color: #2568ed;
+  --primary-color: #555;
+  --action-secondary-color: #548af6;
+  --action-color: #2568ed;
+}
+
+body {
+  font-family: "Fira Code", Menlo, Courier;
+  color: var(--primary-color);
 }
 
 input,
 textarea {
   font-family: "Fira Code", Menlo, Courier;
+}
+
+a {
+  color: var(--action-secondary-color);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .field {
@@ -25,11 +48,18 @@ textarea {
 
 .btn {
   border-radius: 3px;
-  background-color: var(--secondary-color);
+  background-color: var(--action-secondary-color);
   transition: background-color 0.2s;
   line-height: 1;
 
   &:hover {
-    background-color: var(--primary-color);
+    background-color: var(--action-color);
   }
+}
+
+.divider {
+  margin: 1.75rem 0;
+  border: none;
+  height: 1px;
+  background-color: #ddd;
 }

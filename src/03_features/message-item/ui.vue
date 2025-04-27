@@ -50,7 +50,6 @@ const isMe = computed(() => userStore.getUser.id === props.uid);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
   padding: 10px;
   width: 100%;
-  max-width: 500px;
   border-radius: 3px;
 
   display: grid;
@@ -74,12 +73,12 @@ const isMe = computed(() => userStore.getUser.id === props.uid);
     grid-area: name;
     display: flex;
     align-items: center;
-    font-size: 20px;
+    font-size: 1.125rem;
     padding-left: 10px;
 
     &--author {
       font-weight: bold;
-      color: var(--primary-color);
+      color: var(--action-color);
     }
   }
   &__message {
@@ -88,9 +87,10 @@ const isMe = computed(() => userStore.getUser.id === props.uid);
     white-space: pre-line;
   }
   &__date {
-    text-align: right;
-    font-size: 11px;
     margin-top: 10px;
+    text-align: right;
+    font-size: 0.7rem;
+    color: #aaa;
   }
 
   &__remove {

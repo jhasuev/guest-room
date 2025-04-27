@@ -19,12 +19,13 @@ onMounted(async () => {
 <template>
   <div>
     <chat-form />
+    <hr class="divider" />
     <messages class="messages" :messages="roomStore.getMessages" />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .messages {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 </style>

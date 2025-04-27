@@ -71,8 +71,11 @@ const onClickEdit = () => {
   &__field {
     flex-grow: 1;
 
+    width: 100%;
     height: 100%;
     padding: 0 15px;
+
+    font-size: 1rem;
 
     border-radius: 3px 0px 0px 3px;
 
@@ -87,7 +90,8 @@ const onClickEdit = () => {
     position: absolute;
     bottom: 2px;
     right: 60px;
-    font-size: 10px;
+    color: #777;
+    font-size: 0.65rem;
   }
 
   &__btn {
