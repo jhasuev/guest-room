@@ -6,4 +6,7 @@ export const router = createRouter({
   routes,
 });
 
-// TODO add middleware for change the titles of pages
+const DEFAULT_TITLE = document.title;
+router.beforeEach((to) => {
+  document.title = (to.meta.title as string) + " • " + DEFAULT_TITLE;
+});
