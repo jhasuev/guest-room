@@ -1,25 +1,27 @@
 <template>
   <div class="select-emodji" ref="containerRef">
-    <div class="select-emodji__selected" @click="onClickOpen()">
-      {{ selected }}
-    </div>
+    <emodji-item
+      class="select-emodji__selected"
+      :emodji="selected"
+      :selected="true"
+      @select="onClickOpen()"
+    />
 
     <div class="select-emodji__list" :class="{ 'is-open': isOpen }">
-      <div
+      <emodji-item
         v-for="(emodji, i) in emodjis"
         :key="i"
-        class="select-emodji__list-item"
-        :class="{ 'select-emodji__list-item--selected': selected === emodji }"
-        @click="onSelect(emodji)"
-      >
-        {{ emodji }}
-      </div>
+        :selected="selected === emodji"
+        :emodji="emodji"
+        @select="onSelect(emodji)"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onBeforeUnmount, watch } from "vue";
+import EmodjiItem from "@/01_shared/ui/emodji-item";
 const props = defineProps({
   modelValue: {
     type: String,
@@ -87,21 +89,10 @@ onBeforeUnmount(() => {
 <style lang="scss">
 .select-emodji {
   position: relative;
-  height: 50px;
-  width: 50px;
 
-  @include default-shadow;
-  user-select: none;
-
-  &__selected {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    height: inherit;
-    font-size: 1.75rem;
-
-    cursor: pointer;
+  & > &__selected {
+    height: 50px;
+    width: 50px;
   }
 
   &__list {
@@ -138,33 +129,6 @@ onBeforeUnmount(() => {
       visibility: visible;
       opacity: 1;
       transform: translateX(5px);
-    }
-
-    &-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.75rem;
-      @include default-shadow;
-      border: 1px solid transparent;
-
-      width: 60px;
-      height: 60px;
-
-      cursor: pointer;
-      transition: transform 0.1s;
-
-      &:hover {
-        transform: scale(0.9);
-      }
-
-      &--selected {
-        @include default-shadow;
-        font-size: 1.5rem;
-      }
-      &--selected:hover {
-        transform: scale(1);
-      }
     }
   }
 }

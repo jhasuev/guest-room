@@ -90,7 +90,6 @@ const onClickEdit = () => {
     position: absolute;
     bottom: 2px;
     right: 60px;
-    color: #777;
     font-size: 0.65rem;
   }
 
